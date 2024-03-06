@@ -39,4 +39,21 @@ def student_api(request):
             return HttpResponse(jsonData, content_type='application/json')
         jsonData = JSONRenderer().render(serializedData.errors)
         return HttpResponse(jsonData, content_type='application/json')
+    
+
+    if request.method == 'PUT':
+        jsonData = request.body
+        stream = io.BytesIO(jsonData)
+        pythonData = JSONParser().parse(stream)
+        id = pythonData.get('id')
+        studentObjs = Student.objects.get(id = id)
+        serializedData = StudentSerializer(studentObjs, data=pythonData, partial=True)
+        if serializedData.is_valid():
+            serializedData.save()
+            response = {'message':'Data Updated!'}
+            jsonData = JSONRenderer().render(response)
+            return HttpResponse(jsonData, content_type='application/json')
+        jsonData = JSONRenderer().render(serializedData.errors)
+        return HttpResponse(jsonData, content_type='application/json')
+
 

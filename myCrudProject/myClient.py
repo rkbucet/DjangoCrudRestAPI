@@ -12,22 +12,40 @@ URL = "http://127.0.0.1:8000/studentapi/"
 #     r = requests.get(url= URL, data = json_data)
 #     data = r.json()
 #     print(data)
-#
-# get_data(1)
+
+# get_data(2)
     
 
 
-#post method
-def post_data():
+# post method
+# def post_data():
+#     data = {
+#         'name': 'utsav',
+#         'roll': 105,
+#         'city': 'Patna'
+#     }
+    
+#     jsonData = json.dumps(data)
+#     r = requests.post(url= URL, data = jsonData)
+#     data = r.json()
+#     print(data)
+
+# post_data()
+
+#update method
+def update_data():
     data = {
-        'name': 'Rishu Raj',
+        'id': 4,
+        'name': 'Rahul Kumar',
         'roll': 104,
-        'city': 'Kolkata'
+        'city': 'Godda'
     }
     
     jsonData = json.dumps(data)
-    r = requests.post(url= URL, data = jsonData)
+    r = requests.put(url= URL, data = jsonData)
     data = r.json()
     print(data)
 
-post_data()
+update_data()
+
+
